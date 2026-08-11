@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENLIVEN ELITE — Luxury Interior, Architecture & Exterior Studio Bengaluru</title>
+  <meta name="description" content="Bespoke luxury interior design, architectural planning, and exterior craftsmanship studio in Bengaluru. 800+ completed projects across Karnataka.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="/enliven/assets/logo-bgDUmwGl.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- React 18 & Babel Standalone -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Stylesheet -->
+
+  <style>
+    /* ── CSS Logo Preloader (artisinteriorz style) ─────────── */
+    #site-preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #0A0B0C;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 28px;
+      overflow: hidden;
+      /* Exit: whole panel slides upward */
+      transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    #site-preloader.exit {
+      transform: translateY(-100%);
+    }
+
+    /* Logo wrapper clips the reveal */
+    .preloader-logo-wrap {
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    /* Logo rises up from below */
+    .preloader-logo {
+      height: 110px;
+      width: auto;
+      display: block;
+      opacity: 0;
+      transform: translateY(60px);
+      transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .preloader-logo.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Brand name fades in after logo */
+    .preloader-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition:
+        opacity 0.7s ease 0.5s,
+        transform 0.7s ease 0.5s;
+    }
+
+    .preloader-brand.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .preloader-brand-name {
+      font-family: 'Cormorant Garamond', 'Georgia', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #f0ebe1;
+    }
+
+    .preloader-brand-tag {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #C18A53;
+    }
+
+    /* Thin gold progress line at bottom */
+    .preloader-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, #C18A53, #D4AF37);
+      transition: width 2.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .preloader-line.fill {
+      width: 100%;
+    }
+
+    body.preloader-active {
+      overflow: hidden;
+    }
+  </style>
+  <link rel="stylesheet" crossorigin href="/enliven/assets/index-B96EJ0gL.css">
+</head>
+<body>
+
+  <!-- CSS Logo Preloader -->
+  <div id="site-preloader">
+    <div class="preloader-logo-wrap">
+      <img src="/enliven/assets/logo1-removebg-preview-N1lBTzmB.png" alt="ENLIVEN ELITE" class="preloader-logo" id="preloader-logo" />
+    </div>
+    <div class="preloader-brand" id="preloader-brand">
+      <span class="preloader-brand-name">ENLIVEN ELITE</span>
+      <span class="preloader-brand-tag">Interior &middot; Architecture &middot; Exterior &middot; Bengaluru</span>
+    </div>
+    <div class="preloader-line" id="preloader-line"></div>
+  </div>
+
+  <!-- React Application Root -->
+  <div id="root"></div>
+
+  <!-- React Application Engine -->
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // 01. Navbar Component
+    function Navbar({ onOpenBooking }) {
+      const [scrolled, setScrolled] = useState(false);
+      const [mobileOpen, setMobileOpen] = useState(false);
+
+      useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 80);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+
+      return (
+        <React.Fragment>
+          <header>
+            <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+              <div className="brand-logo">
+                <img src="assets/logo.jpg" alt="ENLIVEN ELITE Logo" className="brand-logo-img" />
+                <div className="brand-text">
+                  <span className="brand-title">ENLIVEN ELITE</span>
+                  <span className="brand-sub">Bengaluru</span>
+                </div>
+              </div>
+
+              <ul className="nav-links">
+                <li><a href="#hero" className="nav-link">Home</a></li>
+                <li><a href="#our-story" className="nav-link">Our Story</a></li>
+                <li><a href="#projects" className="nav-link">Projects</a></li>
+                <li><a href="#gallery" className="nav-link">Gallery</a></li>
+                <li><a href="#services" className="nav-link">Services</a></li>
+                <li><a href="#media" className="nav-link">Media</a></li>
+                <li><a href="#contact" className="nav-link">Contact</a></li>
+              </ul>
+
+              <div className="nav-actions">
+                <button onClick={onOpenBooking} className="btn-luxury btn-luxury-solid">
+                  <span>Book a Consultation</span>
+                </button>
+
+                <div className="mobile-nav-toggle" onClick={() => setMobileOpen(!mobileOpen)}>
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+            </nav>
+          </header>
+
+          <div className={`mobile-nav-drawer ${mobileOpen ? 'open' : ''}`}>
+            <a href="#hero" onClick={() => setMobileOpen(false)}>Home</a>
+            <a href="#our-story" onClick={() => setMobileOpen(false)}>Our Story</a>
+            <a href="#projects" onClick={() => setMobileOpen(false)}>Projects</a>
+            <a href="#gallery" onClick={() => setMobileOpen(false)}>Gallery</a>
+            <a href="#services" onClick={() => setMobileOpen(false)}>Services</a>
+            <a href="#media" onClick={() => setMobileOpen(false)}>Media</a>
+            <a href="#contact" onClick={() => { setMobileOpen(false); onOpenBooking(); }}>Contact</a>
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    // 02. Hero Component
+    function Hero({ onOpenBooking }) {
+      const canvasRef = useRef(null);
+
+      useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let width = (canvas.width = window.innerWidth);
+        let height = (canvas.height = window.innerHeight);
+
+        const particles = [];
+        for (let i = 0; i < 45; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: Math.random() * 2.2 + 0.5,
+            alpha: Math.random() * 0.5 + 0.1,
+            speedX: (Math.random() - 0.5) * 0.4,
+            speedY: -Math.random() * 0.3 - 0.1
+          });
+        }
+
+        let animId;
+        const animate = () => {
+          ctx.clearRect(0, 0, width, height);
+          particles.forEach(p => {
+            p.x += p.speedX; p.y += p.speedY;
+            if (p.y < 0) p.y = height;
+            if (p.x < 0) p.x = width;
+            if (p.x > width) p.x = 0;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(243, 229, 171, ${p.alpha})`;
+            ctx.fill();
+          });
+          animId = requestAnimationFrame(animate);
+        };
+        animate();
+        return () => cancelAnimationFrame(animId);
+      }, []);
+
+      return (
+        <section className="hero-section" id="hero">
+          <div className="hero-background">
+            <img src="assets/hero_luxury_villa.png" alt="ENLIVEN ELITE Architecture" />
+          </div>
+          <canvas ref={canvasRef} className="hero-canvas"></canvas>
+          <div className="hero-overlay"></div>
+
+          <div className="hero-content">
+            <div className="editorial-tag hero-badge">Bengaluru Architectural & Interior Studio</div>
+            <h1 className="hero-headline">
+              We turn your house<br />into an <span>abode.</span>
+            </h1>
+            <p className="hero-subtitle">
+              Crafting bespoke interiors, architecture and exterior spaces that blend timeless elegance with modern functionality across 800+ luxury residences.
+            </p>
+
+            <div className="hero-actions">
+              <button onClick={onOpenBooking} className="btn-luxury btn-luxury-solid">
+                <span>Book a Consultation</span>
+                <i data-lucide="arrow-right"></i>
+              </button>
+              <a href="#projects" className="btn-luxury">
+                <span>View Our Work</span>
+              </a>
+            </div>
+          </div>
+
+          <div className="scroll-indicator">
+            <div className="scroll-mouse"><div className="scroll-wheel"></div></div>
+            <span style={{ fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Explore</span>
+          </div>
+        </section>
+      );
+    }
+
+    // 03. OurStory Component
+    function OurStory() {
+      return (
+        <section className="section-padding" id="our-story">
+          <div className="container">
+            <div className="heritage-grid">
+              <div className="heritage-image-wrapper">
+                <img src="assets/modern_villa_exterior.png" alt="Modern Tropical Luxury Villa Karnataka" />
+                <div className="heritage-badge">
+                  <span className="heritage-badge-number">800+</span>
+                  <span className="heritage-badge-label">Luxury Projects Completed</span>
+                </div>
+              </div>
+
+              <div className="heritage-text-content">
+                <div className="editorial-tag">Our Story</div>
+                <h2 className="section-title">
+                  We don't decorate spaces.<br />
+                  We create experiences people <span>love living inside.</span>
+                </h2>
+                <p className="heritage-description">
+                  Based in Bengaluru, ENLIVEN ELITE has redefined luxury living across Karnataka. Guided by passion for bespoke craftsmanship, we operate at the intersection of architecture, interior design, and turnkey engineering.
+                </p>
+                <blockquote className="heritage-quote">
+                  "Luxury is not about catalog furniture. Luxury is about spatial proportion, natural light, tactile materiality, and emotional resonance."
+                </blockquote>
+                <div className="heritage-stats">
+                  <div className="stat-item"><span className="stat-number">150+</span><span className="stat-label">Master Craftsmen</span></div>
+                  <div className="stat-item"><span className="stat-number">800+</span><span className="stat-label">Residences</span></div>
+                  <div className="stat-item"><span className="stat-number">100%</span><span className="stat-label">Turnkey Precision</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // 04. Projects Component
+    function Projects({ onSelectProject }) {
+      const [filter, setFilter] = useState('all');
+      const projectsList = [
+        { id: 1, title: "The Sadashivnagar Sanctuary", category: "villas", catName: "Residential Architecture • Sadashivnagar", img: "assets/modern_villa_exterior.png", meta: "12,500 sq.ft • Teak & Monolithic Concrete" },
+        { id: 2, title: "The Indiranagar Pavilion", category: "living", catName: "Bespoke Interior • Indiranagar 100ft Rd", img: "assets/luxury_living_room.png", meta: "6,800 sq.ft • Nero Marquina & Brass" },
+        { id: 3, title: "The Whitefield Residence", category: "villas", catName: "Modern Luxury Villa • Whitefield", img: "assets/after_room.png", meta: "15,000 sq.ft • Cantilevered Architecture" },
+        { id: 4, title: "EGL Financial Headquarters", category: "commercial", catName: "Commercial Architecture • Embassy Golf Links", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80", meta: "24,000 sq.ft • Smoked Glass & Walnut" },
+        { id: 5, title: "AURA Fine Dining Lounge", category: "dining", catName: "Hospitality Design • Lavelle Road", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80", meta: "8,500 sq.ft • Ambient Lighting" },
+        { id: 6, title: "The Koramangala Courtyard", category: "living", catName: "Luxury Living • Koramangala 3rd Block", img: "assets/hero_luxury_villa.png", meta: "9,200 sq.ft • Natural Sunlight Glasshouse" }
+      ];
+
+      const filtered = filter === 'all' ? projectsList : projectsList.filter(p => p.category === filter);
+
+      return (
+        <section className="section-padding" id="projects">
+          <div className="container">
+            <div className="projects-controls">
+              <div>
+                <div className="editorial-tag">Selected Works</div>
+                <h2 className="section-title">Architectural <span>Portfolio</span></h2>
+              </div>
+              <div className="project-filters">
+                {['all', 'villas', 'living', 'commercial', 'dining'].map(f => (
+                  <button key={f} className={`filter-btn ${filter === f ? 'active' : ''}`} onClick={() => setFilter(f)}>
+                    {f.charAt(0).toUpperCase() + f.slice(1)} Works
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="projects-grid">
+              {filtered.map(p => (
+                <div key={p.id} className="project-card" onClick={() => onSelectProject(p)}>
+                  <div className="project-image-container"><img src={p.img} alt={p.title} /></div>
+                  <div className="project-info-overlay">
+                    <span className="project-category">{p.catName}</span>
+                    <h3 className="project-title">{p.title}</h3>
+                    <div className="project-meta"><span>{p.meta}</span></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // 05. Gallery Component
+    function Gallery() {
+      const [activeCategory, setActiveCategory] = useState('All');
+      const galleryItems = [
+        { id: 1, title: "Sadashivnagar Villa Living Lounge", category: "Villas", img: "assets/hero_luxury_villa.png" },
+        { id: 2, title: "Modern Teak Master Bedroom", category: "Interiors", img: "assets/luxury_living_room.png" },
+        { id: 3, title: "Cantilevered Exterior Facade", category: "Architecture", img: "assets/modern_villa_exterior.png" },
+        { id: 4, title: "Nero Marquina Dining Lounge", category: "Dining", img: "assets/after_room.png" },
+        { id: 5, title: "Golden Teak Wood Material Swatch", category: "Materials", img: "assets/material_teak.png" },
+        { id: 6, title: "EGL Executive Suite Architecture", category: "Commercial", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" }
+      ];
+
+      const categories = ['All', 'Villas', 'Interiors', 'Architecture', 'Dining', 'Commercial'];
+      const filtered = activeCategory === 'All' ? galleryItems : galleryItems.filter(item => item.category === activeCategory);
+
+      return (
+        <section className="section-padding" id="gallery" style={{ background: 'var(--bg-surface)' }}>
+          <div className="container">
+            <div className="projects-controls">
+              <div>
+                <div className="editorial-tag">Visual Archives</div>
+                <h2 className="section-title">Design <span>Gallery</span></h2>
+              </div>
+              <div className="project-filters">
+                {categories.map(cat => (
+                  <button key={cat} className={`filter-btn ${activeCategory === cat ? 'active' : ''}`} onClick={() => setActiveCategory(cat)}>
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="gallery-grid">
+              {filtered.map(item => (
+                <div key={item.id} className="gallery-item">
+                  <img src={item.img} alt={item.title} />
+                  <div className="gallery-overlay">
+                    <span className="project-category">{item.category}</span>
+                    <h3 className="editorial-serif" style={{ fontSize: '1.4rem', color: 'var(--text-main)' }}>{item.title}</h3>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // 06. Services Component
+    function Services({ onOpenBooking }) {
+      const services = [
+        { num: "01", icon: "home", title: "Bespoke Interior Design", desc: "Tailored furniture design, custom warm lighting choreography, spatial flow optimization, and rich wood panelling for luxury apartments & villas." },
+        { num: "02", icon: "compass", title: "Architectural Design", desc: "Full-scale residential villa & commercial architectural conceptualization, structural engineering, cantilevered geometry, and modern facade planning." },
+        { num: "03", icon: "layers", title: "Exterior & Facade Crafting", desc: "Statement exterior architecture blending teak eaves, board-formed concrete, ambient linear illumination, and tropical landscape harmony." },
+        { num: "04", icon: "refresh-cw", title: "Luxury Structural Renovation", desc: "Complete spatial reconfiguration of existing ancestral homes and penthouses into contemporary luxury sanctuaries with modern amenities." },
+        { num: "05", icon: "building", title: "Commercial & Office Architecture", desc: "High-profile corporate headquarters, boutique tech hubs, and executive suites engineered for brand distinction, acoustic comfort, and elegance." },
+        { num: "06", icon: "coffee", title: "Hospitality & Restaurants", desc: "Immersive atmosphere creation for luxury dining venues, boutique cafes, and fine dining lounges across Indiranagar, EGL, and Lavelle Road." },
+        { num: "07", icon: "eye", title: "Photorealistic 3D Visualization", desc: "Hyper-accurate 8K architectural render walkthroughs, sunlight trajectory analysis, and virtual material touchpoint previews before ground breaking." },
+        { num: "08", icon: "shield-check", title: "Turnkey Project Execution", desc: "Single-point responsibility encompassing material sourcing, artisan metalwork, carpentry oversight, quality auditing, and on-time handover." }
+      ];
+
+      return (
+        <section className="section-padding" id="services">
+          <div className="container">
+            <div className="services-header">
+              <div className="editorial-tag" style={{ marginBottom: '16px' }}>Our Expertise</div>
+              <h2 className="section-title">Bespoke Architectural & <span>Interior Offerings</span></h2>
+              <p style={{ color: 'var(--text-muted)', marginTop: '16px' }}>Every service is executed with surgical precision, bespoke craftsmanship, and turnkey project accountability.</p>
+            </div>
+            <div className="services-grid">
+              {services.map((s, i) => (
+                <div key={i} className="service-card">
+                  <div>
+                    <div className="service-number">{s.num}</div>
+                    <div className="service-icon-box"><i data-lucide={s.icon}></i></div>
+                    <h3 className="service-title">{s.title}</h3>
+                    <p className="service-desc">{s.desc}</p>
+                  </div>
+                  <button onClick={onOpenBooking} className="service-link" style={{ background: 'none', border: 'none', padding: 0 }}>
+                    <span>Inquire Service</span>
+                    <i data-lucide="arrow-right"></i>
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // 07. Media Component
+    function Media() {
+      const articles = [
+        { badge: "Architectural Digest", title: "Defining Modern Luxury: The Bengaluru Villa Revolution", desc: "ENLIVEN ELITE featured for groundbreaking spatial proportions, natural teak wood integration, and continuous indoor-outdoor harmony in Sadashivnagar.", img: "assets/modern_villa_exterior.png" },
+        { badge: "Press & Publications", title: "Turnkey Precision in Bespoke Interior Crafting", desc: "How ENLIVEN ELITE delivers seamless end-to-end execution combining master artisans and cutting-edge architectural engineering across Karnataka.", img: "assets/hero_luxury_villa.png" },
+        { badge: "Design Excellence Award", title: "Best Luxury Architecture & Interior Studio Bengaluru", desc: "Recognized as South India's premier bespoke residential & commercial interior design studio for 800+ completed landmark projects.", img: "assets/after_room.png" }
+      ];
+
+      return (
+        <section className="section-padding" id="media" style={{ background: 'var(--bg-surface)' }}>
+          <div className="container">
+            <div style={{ marginBottom: '60px' }}>
+              <div className="editorial-tag">Press & Recognition</div>
+              <h2 className="section-title">Media & <span>Publications</span></h2>
+            </div>
+            <div className="media-grid">
+              {articles.map((m, idx) => (
+                <div key={idx} className="media-card">
+                  <div className="media-thumb">
+                    <img src={m.img} alt={m.title} />
+                    <span className="media-badge">{m.badge}</span>
+                  </div>
+                  <div className="media-body">
+                    <h3 className="media-title">{m.title}</h3>
+                    <p className="media-desc">{m.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // 08. Additional Craft Components (BeforeAfter, Process, Materials, Testimonials, Instagram, Footer)
+    function CraftAndFooter({ onOpenBooking, selectedProject, onCloseProject, bookingOpen, onCloseBooking }) {
+      const [submitted, setSubmitted] = useState(false);
+      const handleSubmit = (e) => { e.preventDefault(); setSubmitted(true); };
+
+      return (
+        <React.Fragment>
+          <section className="section-padding" id="testimonials">
+            <div className="container">
+              <div style={{ textAlign: 'center', maxWidth: '650px', margin: '0 auto 60px auto' }}>
+                <div className="editorial-tag">Client Voices</div>
+                <h2 className="section-title">Client <span>Testimonials</span></h2>
+              </div>
+              <div className="testimonials-grid">
+                {[
+                  { quote: "ENLIVEN ELITE transformed our 12,000 sq.ft Sadashivnagar villa into an international architectural masterpiece. Their attention to teak joinery and ambient cove lighting is unparalleled in South India.", name: "Rajesh & Ananya Reddy", loc: "Villa Owners • Sadashivnagar, Bengaluru" },
+                  { quote: "Working with ENLIVEN ELITE on our Indiranagar lounge was flawless. They completed the entire turnkey design 2 weeks ahead of schedule with uncompromising material quality.", name: "Vikramaditya Rao", loc: "Founder, Hospitality Group • Lavelle Road" },
+                  { quote: "As a commercial developer, I look for precision, zero layout shifts, and bold architectural statements. ENLIVEN ELITE delivers world-class execution every single time.", name: "Siddharth Mehta", loc: "Managing Director, Prestige Commercial Space" }
+                ].map((t, idx) => (
+                  <div key={idx} className="testimonial-card">
+                    <p className="testimonial-quote">"{t.quote}"</p>
+                    <div className="testimonial-client">
+                      <span className="client-name">{t.name}</span>
+                      <span className="client-loc">{t.loc}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <footer className="footer" id="contact">
+            <div className="container">
+              <div className="footer-top">
+                <div className="footer-brand">
+                  <h2 className="footer-title">Your dream space deserves <span>extraordinary design.</span></h2>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '1rem', maxWidth: '480px' }}>
+                    Ready to transform your home, villa, or commercial venue into an architectural sanctuary? Commission your project with ENLIVEN ELITE today.
+                  </p>
+                  <div>
+                    <button onClick={onOpenBooking} className="btn-luxury btn-luxury-solid" style={{ padding: '16px 36px', fontSize: '0.9rem' }}>
+                      <span>Book a Private Consultation</span>
+                      <i data-lucide="arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="footer-col-title">Studio Location</div>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.8' }}>
+                    ENLIVEN ELITE Architecture Studio<br />
+                    #482, 100 Feet Road, Indiranagar<br />
+                    Bengaluru, Karnataka 560038
+                  </p>
+                </div>
+
+                <div>
+                  <div className="footer-col-title">Direct Contact</div>
+                  <ul className="footer-links">
+                    <li><a href="tel:+918049208800">+91 80 4920 8800</a></li>
+                    <li><a href="tel:+919880012345">+91 98800 12345</a></li>
+                    <li><a href="mailto:inquiries@enlivenelite.com">inquiries@enlivenelite.com</a></li>
+                  </ul>
+                </div>
+
+                <div>
+                  <div className="footer-col-title">Navigation</div>
+                  <ul className="footer-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#our-story">Our Story</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#media">Media</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="footer-bottom">
+                <div>© 2026 ENLIVEN ELITE Studio. All Rights Reserved. Bengaluru, Karnataka.</div>
+              </div>
+            </div>
+          </footer>
+
+          {/* Booking Modal */}
+          {bookingOpen && (
+            <div className="modal-backdrop active" onClick={onCloseBooking}>
+              <div className="modal-container" onClick={e => e.stopPropagation()}>
+                <button className="modal-close" onClick={onCloseBooking}><i data-lucide="x"></i></button>
+                {!submitted ? (
+                  <React.Fragment>
+                    <div style={{ marginBottom: '28px' }}>
+                      <div className="editorial-tag" style={{ marginBottom: '8px' }}>Private Consultation</div>
+                      <h2 className="editorial-serif" style={{ fontSize: '2.2rem', color: 'var(--text-main)' }}>Commission Your Space</h2>
+                    </div>
+                    <form onSubmit={handleSubmit}>
+                      <div className="form-group">
+                        <label className="form-label">Full Name</label>
+                        <input type="text" className="form-input" placeholder="e.g. Vikramaditya Rao" required />
+                      </div>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                        <div className="form-group">
+                          <label className="form-label">Phone Number</label>
+                          <input type="tel" className="form-input" placeholder="+91 98765 43210" required />
+                        </div>
+                        <div className="form-group">
+                          <label className="form-label">Email Address</label>
+                          <input type="email" className="form-input" placeholder="name@domain.com" required />
+                        </div>
+                      </div>
+                      <button type="submit" className="btn-luxury btn-luxury-solid" style={{ width: '100%', justifyContent: 'center', padding: '16px' }}>
+                        <span>Request Private Consultation</span>
+                        <i data-lucide="arrow-right"></i>
+                      </button>
+                    </form>
+                  </React.Fragment>
+                ) : (
+                  <div style={{ textAlign: 'center', padding: '40px 20px' }}>
+                    <h3 className="editorial-serif" style={{ fontSize: '2.2rem', marginBottom: '12px' }}>Consultation Confirmed</h3>
+                    <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>Senior Design Partner will contact you within 24 hours.</p>
+                    <button className="btn-luxury btn-luxury-solid" onClick={onCloseBooking}><span>Close Window</span></button>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Project Modal */}
+          {selectedProject && (
+            <div className="modal-backdrop active" onClick={onCloseProject}>
+              <div className="modal-container" style={{ maxWidth: '840px' }} onClick={e => e.stopPropagation()}>
+                <button className="modal-close" onClick={onCloseProject}><i data-lucide="x"></i></button>
+                <div style={{ marginBottom: '24px' }}>
+                  <span className="project-category">{selectedProject.catName}</span>
+                  <h2 className="editorial-serif" style={{ fontSize: '2.6rem', color: 'var(--text-main)' }}>{selectedProject.title}</h2>
+                </div>
+                <div style={{ height: '400px', borderRadius: 'var(--radius-sm)', overflow: 'hidden', marginBottom: '24px' }}>
+                  <img src={selectedProject.img} alt={selectedProject.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', padding: '20px', background: 'var(--bg-dark)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
+                  <div><div style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--color-teak)' }}>Location</div><div style={{ color: 'var(--text-main)' }}>Sadashivnagar, Bengaluru</div></div>
+                  <div><div style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--color-teak)' }}>Specifications</div><div style={{ color: 'var(--text-main)' }}>{selectedProject.meta}</div></div>
+                  <div><div style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--color-teak)' }}>Materials</div><div style={{ color: 'var(--text-main)' }}>Burma Teak & Brass</div></div>
+                </div>
+              </div>
+            </div>
+          )}
+        </React.Fragment>
+      );
+    }
+
+    // Main App Component
+    function App() {
+      const [bookingOpen, setBookingOpen] = useState(false);
+      const [selectedProject, setSelectedProject] = useState(null);
+
+      useEffect(() => {
+        if (window.lucide) window.lucide.createIcons();
+      });
+
+      return (
+        <div className="app-root">
+          <Navbar onOpenBooking={() => setBookingOpen(true)} />
+          <main>
+            <Hero onOpenBooking={() => setBookingOpen(true)} />
+            <OurStory />
+            <Projects onSelectProject={(p) => setSelectedProject(p)} />
+            <Gallery />
+            <Services onOpenBooking={() => setBookingOpen(true)} />
+            <Media />
+          </main>
+          <CraftAndFooter 
+            bookingOpen={bookingOpen}
+            onCloseBooking={() => setBookingOpen(false)}
+            onOpenBooking={() => setBookingOpen(true)}
+            selectedProject={selectedProject}
+            onCloseProject={() => setSelectedProject(null)}
+          />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+
+  <!-- Preloader Control Script -->
+  <script>
+    (function () {
+      var preloader = document.getElementById('site-preloader');
+      var logo      = document.getElementById('preloader-logo');
+      var brand     = document.getElementById('preloader-brand');
+      var line      = document.getElementById('preloader-line');
+
+      // Lock scroll
+      document.body.classList.add('preloader-active');
+
+      var dismissed = false;
+
+      function dismissPreloader() {
+        if (dismissed) return;
+        dismissed = true;
+        preloader.classList.add('exit');
+        document.body.classList.remove('preloader-active');
+        setTimeout(function () {
+          if (preloader && preloader.parentNode) preloader.parentNode.removeChild(preloader);
+        }, 1050);
+      }
+
+      // Step 1: logo rises up after a tiny delay
+      setTimeout(function () {
+        logo.classList.add('reveal');
+        brand.classList.add('reveal');
+      }, 200);
+
+      // Step 2: gold line sweeps across
+      setTimeout(function () {
+        line.classList.add('fill');
+      }, 300);
+
+      // Step 3: exit after 2.8s (line completes) + small pause
+      setTimeout(dismissPreloader, 3200);
+    })();
+  </script>
+</body>
+</html>
