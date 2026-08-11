@@ -17,7 +17,7 @@ export default function Navbar({ onOpenBooking, gridActive, onToggleGrid }) {
       <header>
         <nav class={`navbar ${scrolled ? 'scrolled' : ''}`}>
           <div class="brand-logo">
-            <img src="assets/logo.jpg" alt="ENLIVEN ELITE Logo" class="brand-logo-img" />
+            <img src="assets/logo1-removebg-preview.png" alt="ENLIVEN ELITE Logo" class="brand-logo-img" />
             <div class="brand-text">
               <span class="brand-title">ENLIVEN ELITE</span>
               <span class="brand-sub">Bengaluru</span>

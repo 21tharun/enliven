@@ -213,7 +213,7 @@ img {
 }
 
 .brand-logo-img {
-  height: 44px;
+  height: 64px;
   width: auto;
   object-fit: contain;
   border-radius: 4px;
@@ -368,6 +368,11 @@ img {
 @media (max-width: 1024px) {
   .nav-links { display: none; }
   .mobile-nav-toggle { display: flex; }
+}
+
+@media (max-width: 768px) {
+  .navbar { padding: 0 20px; }
+  .nav-actions .btn-luxury { display: none; }
 }
 
 /* Mobile Drawer */
